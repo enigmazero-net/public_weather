@@ -7,6 +7,7 @@ from typing import Callable, Dict
 from playwright.sync_api import sync_playwright
 
 URL = "https://meteo.gov.lk/"  # homepage shows the daily forecast (loaded dynamically)
+MIN_FETCH_INTERVAL = timedelta(hours=3)
 
 LANG_MARKERS = {
     "si": re.compile(r"\d{4}.*කාලගුණ අනාවැකිය"),
@@ -58,7 +59,39 @@ def parse_block(block_text: str, is_issued: Callable[[str], bool]) -> dict:
     return {"title": title, "issued": issued, "body": "\n\n".join(body_lines).strip()}
 
 
+def should_fetch(latest_path: str, now: datetime) -> bool:
+    try:
+        with open(latest_path, "r", encoding="utf-8") as f:
+            previous = json.load(f)
+    except FileNotFoundError:
+        return True
+    except json.JSONDecodeError:
+        return True
+
+    fetched_at = previous.get("fetched_at", "")
+    if not fetched_at:
+        return True
+
+    try:
+        last = datetime.fromisoformat(fetched_at)
+    except ValueError:
+        return True
+
+    if last.tzinfo is None:
+        last = last.replace(tzinfo=now.tzinfo)
+
+    return (now - last) >= MIN_FETCH_INTERVAL
+
+
 def main():
+    sl_tz = timezone(timedelta(hours=5, minutes=30))
+    now = datetime.now(sl_tz)
+    latest_path = "data/meteo_forecast_latest.json"
+
+    if not should_fetch(latest_path, now):
+        print("Skipping fetch: last update was under 3 hours ago.")
+        return
+
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
@@ -82,8 +115,7 @@ def main():
     if "ta" in blocks:
         parsed["ta"] = parse_block(blocks["ta"], lambda ln: "வெளியிட" in ln)
 
-    sl_tz = timezone(timedelta(hours=5, minutes=30))
-    fetched_at = datetime.now(sl_tz).isoformat()
+    fetched_at = now.isoformat()
 
     out_all = {
         "source": "meteo.gov.lk",
@@ -94,7 +126,7 @@ def main():
 
     os.makedirs("data", exist_ok=True)
 
-    with open("data/meteo_forecast_latest.json", "w", encoding="utf-8") as f:
+    with open(latest_path, "w", encoding="utf-8") as f:
         json.dump(out_all, f, ensure_ascii=False, indent=2)
 
     out_en = {

@@ -5,12 +5,21 @@ Fetches the daily Public Weather forecast from https://meteo.gov.lk and stores i
 ## Output files
 - `data/meteo_forecast_latest.json` (all available languages)
 - `data/meteo_forecast_en_latest.json` (English only)
+These files are overwritten on each successful fetch; no timestamped copies are created.
 
 ## Run locally
 ```bash
 pip install -r requirements.txt
 python -m playwright install --with-deps chromium
 python scripts/fetch_meteo_en.py
+```
+
+## Recommended schedule
+Run the script every 3 hours. It will skip a fetch if the last update was under 3 hours ago.
+
+Example cron (every 3 hours):
+```bash
+0 */3 * * * cd /path/to/public_weather && python scripts/fetch_meteo_en.py
 ```
 
 ## Verify with curl
