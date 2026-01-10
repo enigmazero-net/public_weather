@@ -10,20 +10,34 @@ URL = "https://meteo.gov.lk/"  # homepage shows the daily forecast (loaded dynam
 MIN_FETCH_INTERVAL = timedelta(hours=3)
 
 LANG_MARKERS = {
-    "si": re.compile(r"\d{4}.*කාලගුණ අනාවැකිය"),
-    "en": re.compile(r"WEATHER FORECAST FOR"),
-    "ta": re.compile(r"\d{4}.*வானிலை முன்னறிவிப்பு"),
+    "si": re.compile(r"\d{4}\s+[\u0D80-\u0DFF][\s\S]*?කාලගුණ\s+අනාවැකිය"),
+    "en": re.compile(r"WEATHER\s+FORECAST\s+FOR", re.IGNORECASE),
+    "ta": re.compile(r"\d{4}\s+[\u0B80-\u0BFF][\s\S]*?வானிலை\s+முன்னறிவிப்பு"),
 }
+
+NON_ENGLISH_RE = re.compile(r"[\u0B80-\u0BFF\u0D80-\u0DFF]")
+NON_ENGLISH_BLOCK_RE = re.compile(r"\d{4}\s+[\u0B80-\u0BFF\u0D80-\u0DFF]")
 
 
 def normalize_ws(s: str) -> str:
     s = s.replace("\r", "")
+    s = s.replace("\xa0", " ")
     s = re.sub(r"[ \t]+", " ", s)
     s = re.sub(r"\n{3,}", "\n\n", s)
     return s.strip()
 
 
+def trim_after_english(block_text: str) -> str:
+    match = NON_ENGLISH_BLOCK_RE.search(block_text)
+    if not match:
+        match = NON_ENGLISH_RE.search(block_text)
+    if match:
+        return block_text[:match.start()].strip()
+    return block_text
+
+
 def split_blocks(full_text: str) -> Dict[str, str]:
+    full_text = full_text.replace("\xa0", " ")
     indices = []
     for lang, pattern in LANG_MARKERS.items():
         match = pattern.search(full_text)
@@ -38,6 +52,9 @@ def split_blocks(full_text: str) -> Dict[str, str]:
     for idx, (start, lang) in enumerate(indices):
         end = indices[idx + 1][0] if idx + 1 < len(indices) else None
         blocks[lang] = full_text[start:end].strip()
+
+    if "en" in blocks:
+        blocks["en"] = trim_after_english(blocks["en"])
 
     return blocks
 
