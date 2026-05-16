@@ -1,10 +1,15 @@
 {
   "source": "meteo.gov.lk",
   "lang": "multi",
-  "fetched_at": "2026-05-16T03:14:42.622498+05:30",
-  "en": {
-    "title": "WEATHER FORECAST FOR NEXT 36 HOURS Issued at 04.00 p.m. on 15 May 2026. According to the today’s (May 15th) latest weather analysis, the low-pressure area located northeast of the Sri Lanka, still persist. The Department of Meteorology is continuously monitoring the behavior, development and path of the system. Tonight: Due to the influence of the above system, Showers or thundershowers will occur at times in Western, Sabaragamuwa, Central, North-western and Northern provinces and in Anuradhapura, Galle and Matara districts. Heavy showers above 100mm are likely at some places. Tomorrow: Showers or thundershowers will occur at times and cloudy skies are expected in Western, Sabaragamuwa, Central, North-western and Northern provinces and in Galle and Matara districts. Fairly heavy showers above 75 mm are likely at some places in these areas. Several spells of showers will occur in Anuradhapura district. Showers or thundershowers may occur at several places elsewhere after 1.00 pm. The general public is kindly requested to take adequate precautions to minimize damage caused by temporary localized strong winds and lightning during thundershowers. அடுத்த 36 மணித்தியாலங்களுக்கான பொதுவான வானிலை முன்னறிவிப்பு",
+  "fetched_at": "2026-05-16T06:57:20.941386+05:30",
+  "si": {
+    "title": "2026 මැයි මස 16 දින සඳහා කාලගුණ අනාවැකිය 2026 මැයි මස 16 දින උදෑසන 05.30 ට නිකුත්කරන ලදි. අද දින නවතම දත්ත විශ්ලේෂණ අනුව, ශ්‍රී ලංකාවට ඊසාන දෙසින් පිහිටා ඇති අඩු පීඩන කලාපය තවදුරටත් පවතී. එම පද්ධතියේ හැසිරීම, වර්ධනය සහ ගමන් මාර්ගය පිළිබදව කාලගුණ විද්‍යා දෙපාර්තමේන්තුව නිරන්තර අවධානයෙන් පසුවේ. මෙම පද්ධතියේ බලපෑම හේතුවෙන්, බස්නාහිර, සබරගමුව, මධ්‍යම, වයඹ සහ උතුරු පළාත්වලත් ගාල්ල සහ මාතර දිස්ත්‍රික්ක වලත් විටින් විට වැසි හෝ ගිගුරුම් සහිත වැසි ඇති වන අතර අහස වලාකුළින් බරව පවතී. ඇතැම් ස්ථානවලට මි.මී. 75 ක පමණ තරමක තද වැසි ඇතිවිය හැක. අනුරාධපුර දිස්ත්‍රික්කයේ වැසි වාර කිහිපයක් ඇතිවේ. ඌව සහ නැගෙනහිර පළාත්වල ස්ථාන ස්වල්පයක පස්වරු 1.00 න් පසුව වැසි හෝ ගිගුරුම් සහිත වැසි ඇති විය හැක. ගිගුරුම් සහිත වැසි සමග ඇතිවිය හැකි තාවකාලික තද සුළං වලින් සහ අකුණු මඟින් සිදු වන අනතුරු අවම කර ගැනීමට අවශ්‍ය පියවර ගන්නා ලෙස ජනතාවගෙන් කාරුණිකව ඉල්ලා සිටිනු ලැබේ.",
     "issued": "",
     "body": ""
+  },
+  "en": {
+    "title": "WEATHER FORECAST FOR 16 MAY 2026 Issued at 05.30 a.m. on 16 May 2026. According to the today’s latest weather analysis, the low-pressure area located northeast of the Sri Lanka, still persist. The Department of Meteorology is continuously monitoring the behavior, development and path of the system. Due to the influence of the above system, Showers or thundershowers will occur at times and cloudy skies are expected in Western, Sabaragamuwa, Central, North-western and Northern provinces and in Galle and Matara districts. Fairly heavy showers about 75 mm are likely at some places in these areas. Several spells of showers will occur in Anuradhapura district. Showers or thundershowers may occur at a few places in Uva and Eastern provinces after 1.00 pm. The general public is kindly requested to take adequate precautions to minimize damage caused by temporary localized strong winds and lightning during thundershowers.",
+    "issued": "",
+    "body": "Severe Advisory\n\nForecasts\n\nMarine\n\nClimate\n\nWeather Graphics\n\n3 Hourly Data\n\nAgromet / Weather Data\n\nSeasonal Forecast\n\nPublications\n\nPublic Notices\n\nAbout Us\n\nContact Us\n\nOnline Users : 494\n\nTsunami Warning – No Advisory\n\nLand Area Advisory PDF\n\nLightning Advisory – No Advisory\n\nSea Area Advisory PDF\n\nHeat Advisory – No Advisory\n\n🎙️Listen To The Weather Forecast"
   }
 }
